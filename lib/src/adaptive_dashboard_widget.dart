@@ -39,6 +39,11 @@ class AdaptiveDashboardCanvas extends StatefulWidget {
 
 class _AdaptiveDashboardCanvasState extends State<AdaptiveDashboardCanvas> {
   String? _activeItemId;
+  @override
+  void initState() {
+    widget.controller.setConfig(widget.config);
+    super.initState();
+  }
 
   void _onInteractionStart(String id) {
     setState(() {
@@ -94,6 +99,7 @@ class _AdaptiveDashboardCanvasState extends State<AdaptiveDashboardCanvas> {
             return SizedBox(
               height: totalHeight,
               child: Stack(
+                alignment: Alignment.topLeft,
                 children: [
                   if (widget.showGrid)
                     Positioned.fill(
@@ -274,9 +280,13 @@ class _DashboardItemWrapperState extends State<_DashboardItemWrapper> {
       width: renderWidth,
       height: renderHeight,
       child: Stack(
+        alignment: Alignment.topLeft,
         children: [
           SizedBox.expand(
             child: Container(
+              alignment: Alignment.topLeft,
+              width: width,
+              height: height,
               margin: const EdgeInsets.all(2),
               // elevation: (_isDragging || _isResizing) ? 8 : 1,
               decoration: BoxDecoration(
@@ -307,6 +317,23 @@ class _DashboardItemWrapperState extends State<_DashboardItemWrapper> {
                   : widget.child,
             ),
           ),
+          if (widget.editMode)
+            Positioned(
+              right: 0,
+              top: 0,
+              child: GestureDetector(
+                onTap: () => widget.controller.removeWidget(widget.item.id),
+                child: Container(
+                  width: 24,
+                  height: 24,
+                  decoration: BoxDecoration(
+                    color: Colors.red.withAlpha(128),
+                    borderRadius: const BorderRadius.only(bottomLeft: Radius.circular(12)),
+                  ),
+                  child: const Icon(Icons.delete, size: 16, color: Colors.white),
+                ),
+              ),
+            ),
           if (widget.editMode)
             Positioned(
               left: 0,
