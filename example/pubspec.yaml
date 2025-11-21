@@ -1,0 +1,27 @@
+name: example
+description: Example app for adaptive_dashboard package
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.9.2
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  adaptive_dashboard:
+    path: ../
+  flutter_map: ^8.2.2
+  latlong2: ^0.9.1
+  
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true
+
