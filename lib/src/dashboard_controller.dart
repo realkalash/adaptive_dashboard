@@ -74,6 +74,14 @@ class DashboardController extends ChangeNotifier {
     notifyListeners();
   }
 
+  void replaceCanvas(List<DashboardItem> items) {
+    _items.clear();
+    for (var item in items) {
+      _items[item.id] = item;
+    }
+    notifyListeners();
+  }
+
   DashboardItem? getItemById(String id) {
     return _items[id];
   }
