@@ -1,4 +1,4 @@
-library adaptive_dashboard;
+library;
 
 // Export your widgets here
 export 'src/adaptive_dashboard_widget.dart';
